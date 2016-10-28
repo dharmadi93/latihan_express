@@ -7,7 +7,7 @@ const  cors = require('cors')
 
 //Initiate express
 const app = express()
-const router = app.Route()
+const router = express.Router()
 
 
 //App configuraiton
@@ -17,5 +17,6 @@ app.use(bodyParser.json())
 app.use(cors())
 
 
-const data = require('./data.json')
+const books = require('./data.js')
+console.log(books)
 
