@@ -43,8 +43,11 @@ const books = require('./data/data.js')
 app.use('/api', apiRoutesBook)
 
 //run the app
-const hostname = process.env.HOST || "localhost"
-const port = process.env.PORT || "3000"
+const hostname = process.env.HOST
+const port = process.env.PORT
+
+// const hostname = process.env.HOST || "localhos"
+// const port = process.env.PORT || "3000"
 
 app.listen(port, hostname, (err) => {
     if (err) console.log(err)
