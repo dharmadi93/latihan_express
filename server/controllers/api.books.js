@@ -1,7 +1,9 @@
-var express = require('express')
-var router = express.Router()
+const express = require('express')
+const router = express.Router()
 
-var books = require('../data/data')
+const books = require('../data/data')
+
+const Book = require('../models/books')
 
 
 module.exports = {
@@ -10,27 +12,49 @@ module.exports = {
     },
 
     getBooks: (req, res) => {
-        res.json(books)
+        // res.json(books)
+        Book.find(function (data) {
+            res.json(data)
+        })
     },
 
     getBooksById: (req, res) => {
-        const book = books.filter(book => {
-            return book.id === Number(req.params.id)
-        })[0]
 
-        if (!book) res.status(404).json({ 'message': 'no book found'})
-        res.status(200).json(book)
+        Book.find({
+            _id: req.params.id
+        }, function (err, data) {
+            req.json(data)
+        })
+
+        // const book = books.filter(book => {
+        //     return book.id === Number(req.params.id)
+        // })[0]
+        //
+        // if (!book) res.status(404).json({ 'message': 'no book found'})
+        // res.status(200).json(book)
     },
 
     addBook: (req, res) => {
-        const book = {
-            id: Number(req.body.id),
-            name: req.body.name,
-            price: Number(req.body.price)
-        }
-        books.push(book)
 
-        res.json(book)
+
+        const book = {
+            isbn: req.body.isbn,
+            name: req.body.name,
+            price: req.body.price
+        }
+
+        Book.create(book, function (err, data) {
+            res.json(data)
+        })
+
+        // const book = {
+        //     id: Number(req.body.id),
+        //     name: req.body.name,
+        //     price: Number(req.body.price)
+        // }
+        // books.push(book)
+        //
+        // res.json(book)
     },
 
     deleteBook: (req, res) => {
