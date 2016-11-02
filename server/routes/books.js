@@ -8,12 +8,12 @@ router.get('/ping', bookController.getPing)
 
 router.get('/books', bookController.getBooks)
 
-router.get('/books/:id', bookController.getBooksById)
+router.get('/books/:isbn', bookController.getBooksByIsbn)
 
 router.post('/books', bookController.addBook)
 
-router.delete('/books/:id', bookController.deleteBook)
+router.delete('/books/:isbn', bookController.deleteBook)
 
-router.put('/books/:id', bookController.updateBook)
+router.put('/books/:isbn', bookController.updateBook)
 
 module.exports = router
