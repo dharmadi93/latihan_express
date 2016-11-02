@@ -19,7 +19,7 @@ module.exports = {
         })[0]
 
         if (!book) res.status(404).json({ 'message': 'no book found'})
-        // res.statusCode(200).json(book)
+        res.status(200).json(book)
     },
 
     addBook: (req, res) => {
